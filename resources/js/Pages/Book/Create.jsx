@@ -1,7 +1,13 @@
 import React from "react";
+import { Link, useForm } from '@inertiajs/react';
 import Authenticated from "@/Layouts/AuthenticatedLayout";
 
 const Create = (props) => {
+    const {data, setData} = useForm({
+        title: "",
+        author: "",
+        totalpages: ""
+    })
     
     return (
         <Authenticated user={props.auth.user} header={
@@ -11,13 +17,22 @@ const Create = (props) => {
             }>
             
             <div className="p-12">
-                <h1>Blog Name</h1>
-                <div>
-                    <div>
-                        <h2>Title a</h2>
-                        
-                    </div>
-                </div>
+            <form>
+                        <div>
+                            <h2>Title</h2>
+                            <input type="text" placeholder="タイトル" onChange={(e) => setData("title", e.target.value)}/>
+                        </div>                    
+
+                        <div>
+                            <h2>Auther</h2>
+                            <input type="text" placeholder="著者" onChange={(e) => setData("author", e.target.value)} />
+                        </div>
+
+                        <div>
+                            <h2>Total page</h2>
+                            <input type="number" placeholder="総ページ" onChange={(e) => setData("totalpages", e.target.value)} />
+                        </div>
+                    </form>  
             </div>
             
         </Authenticated>

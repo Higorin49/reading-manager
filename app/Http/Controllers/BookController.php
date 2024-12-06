@@ -19,6 +19,7 @@ class BookController extends Controller
     }
     public function create()
     {
+        dd('テスト');
         return Inertia::render('Book/Create');
     }
     
