@@ -3,23 +3,29 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Post;
+use App\Models\Book;
 use Inertia\Inertia;
+
 
 class BookController extends Controller
 {
-    public function store(Request $request)
+    public function store(Request $request, Book $book)
     {
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'author' => 'nullable|string|max:255',
-           
-            'published_date' => 'nullable|date',
-        ]);
+        
+        $input = $request->all();
+        $input['check'] = true;
+        // dd($input);
+        $book->fill($input)->save();
+        return redirect("/books/create" );
+        // $validated = $request->validate([
+        //     'title' => 'required|string|max:255',
+        //     'author' => 'nullable|string|max:255',
+        //     'published_date' => 'nullable|date',
+        // ]);
     }
     public function create()
     {
-        dd('テスト');
+        
         return Inertia::render('Book/Create');
     }
     

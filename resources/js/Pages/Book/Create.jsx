@@ -2,12 +2,19 @@ import React from "react";
 import { Link, useForm } from '@inertiajs/react';
 import Authenticated from "@/Layouts/AuthenticatedLayout";
 
+
 const Create = (props) => {
-    const {data, setData} = useForm({
+    const {data, setData,post} = useForm({
         title: "",
         author: "",
-        totalpages: ""
+        totalpage: ""
     })
+
+    const Send = (e) => {
+        console.log('test');
+        e.preventDefault();
+        post("/books");
+    }
     
     return (
         <Authenticated user={props.auth.user} header={
@@ -17,7 +24,7 @@ const Create = (props) => {
             }>
             
             <div className="p-12">
-            <form>
+            <form onSubmit={Send}>
                         <div>
                             <h2>Title</h2>
                             <input type="text" placeholder="タイトル" onChange={(e) => setData("title", e.target.value)}/>
@@ -30,8 +37,9 @@ const Create = (props) => {
 
                         <div>
                             <h2>Total page</h2>
-                            <input type="number" placeholder="総ページ" onChange={(e) => setData("totalpages", e.target.value)} />
+                            <input type="number" placeholder="総ページ" onChange={(e) => setData("totalpage", e.target.value)} />
                         </div>
+                        <button type="submit" className="p-1 bg-purple-300 hover:bg-purple-400 rounded-md">send</button>
                     </form>  
             </div>
             
