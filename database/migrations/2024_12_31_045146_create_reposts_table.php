@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('repost_user', function (Blueprint $table) {
+        Schema::create('reposts', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('users_id')->constrained();
-            $table->foreignId('reposts_id')->constrained();
+            $table->string('body', 200);
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('post_id')->constrained();
         });
     }
 
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('repost_user');
+        Schema::dropIfExists('reposts');
     }
 };

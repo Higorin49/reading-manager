@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useForm } from '@inertiajs/react';
 import Authenticated from "@/Layouts/AuthenticatedLayout";
-
+import { useState } from "react";
 
 const Create = (props) => {
     const {data, setData,post} = useForm({

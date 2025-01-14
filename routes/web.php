@@ -5,6 +5,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\BoardController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +38,20 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::post('/books', [BookController::class, 'store']);
-Route::get('/books/create', [BookController::class, 'create'])->name('book.create');
+Route::middleware('auth')->group(function () {
+    Route::post('/books', [BookController::class, 'store']);
+    Route::get('/books/create', [BookController::class, 'create'])->name('book.create');
+    Route::get("/books", [BookController::class, "index"])->name('books');
+    Route::post('/mylibrary', [BookController::class, 'addmylibrary']);
+    Route::get('/mylibrary', [BookController::class, 'showMylibrary'])->name('mylibrary');
+    Route::get('/mymodal', [BookController::class, 'myModal'])->name('mymodal');
+    Route::post('/addpage',[BookController::class, 'addPage'])->name('addpage');
+    Route::get("/board/{id}",[BoardController::class,"showBoard"]);
+    Route::post("/board", [BoardController::class, "sendPost"]);
+    Route::get('/api/board/{id}/posts', [BoardController::class, 'getPosts']);
+    Route::get('/board/{board_id}/post/{post}', [BoardController::class, 'postShow']);
+    Route::post('/repost',[PostController::class,"storeRepost"]);
+    Route::get('/posts/{post}/repost',[PostController::class,"getRepost"]);
+});
 
 require __DIR__.'/auth.php';

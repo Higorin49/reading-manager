@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('mybooks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('users_id')->constrained();
-            $table->foreignId('books_id')->constrained();
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('book_id')->constrained();
             $table->integer('currentpage');
+            $table->timestamps();
         });
     }
 

@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('boards', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('books_id')->constrained();
+            $table->boolean('is_seacret');
+            $table->foreignId('book_id')->constrained();
         });
     }
 

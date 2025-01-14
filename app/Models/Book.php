@@ -18,4 +18,11 @@ class Book extends Model
         "published_date",
         "check"
     ];
+
+    public function mybooks(){
+        return $this->hasMany(Mybook::class);
+    }
+    public function boards(){
+        return $this->hasMany(Board::class);
+    }
 }
