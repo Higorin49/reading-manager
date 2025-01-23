@@ -2,6 +2,8 @@ import {React, useState,useEffect} from "react";
 import Authenticated from "@/Layouts/AuthenticatedLayout";
 import { Link } from '@inertiajs/react';
 import RepostModal from "./RepostModal";
+import { Heart } from 'lucide-react';
+
 
 
 
@@ -38,7 +40,7 @@ const Show = (props) => {
             
             <div className="p-12">
                
-                
+            <Heart />
                 <div>
                     <p>{ post.body }</p>
                 </div>

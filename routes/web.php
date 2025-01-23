@@ -52,6 +52,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/board/{board_id}/post/{post}', [BoardController::class, 'postShow']);
     Route::post('/repost',[PostController::class,"storeRepost"]);
     Route::get('/posts/{post}/repost',[PostController::class,"getRepost"]);
+    Route::post('/books/isbn',[BookController::class, 'storeisbn']);
+    Route::get('/books/createisbn', [BookController::class, 'createisbn'])->name('createisbn');
 });
 
 require __DIR__.'/auth.php';

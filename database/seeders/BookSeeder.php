@@ -20,8 +20,9 @@ class BookSeeder extends Seeder
             'author' => '川端康成',
             'totalpage' => 300,
             'check' => true,
+            'isbn' => '9784101001029',
             'created_at' => new DateTime(),
-            'updated_at' => new DateTime(),
+            'updated_at' => new DateTime()
      ]);
     }
 }

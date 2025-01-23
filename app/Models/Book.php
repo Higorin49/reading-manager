@@ -16,7 +16,8 @@ class Book extends Model
         "author",
         "totalpage",
         "published_date",
-        "check"
+        "check",
+        "isbn"
     ];
 
     public function mybooks(){
@@ -24,5 +25,8 @@ class Book extends Model
     }
     public function boards(){
         return $this->hasMany(Board::class);
+    }
+    public function bookimages(){
+        return $this->hasMany(BookImage::class);
     }
 }

@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('books', function (Blueprint $table) {
+        Schema::create('repost_likes', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('title', 50);
-            $table->string('author', 50);
-            $table->string('totalpage', 300)->nullable();
-            $table->boolean('check');
-            $table->string("isbn",13);
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            //いいねされた記事のid
+            // $table->foreignId('post_id')->constrained()->onDelete('cascade');
+            $table->foreignId('repost_id')->constrained()->onDelete('cascade');
         });
     }
 
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('books');
+        Schema::dropIfExists('repost_likes');
     }
 };
