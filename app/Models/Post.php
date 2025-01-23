@@ -26,4 +26,8 @@ class Post extends Model
     public function reposts(){
         return $this->hasMany(Repost::class);
     }
+    public function postlikes(){
+        return $this->hasMany(PostLike::class);
+    }
+    
 }
