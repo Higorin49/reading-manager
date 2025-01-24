@@ -2,9 +2,9 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev": "vite --host",
-        "build": "vite build",
-        "watch": "npm-watch"
+        "dev": "vite",
+        "build": "vite build", 
+        "heroku-postbuild": "npm run build"
     },
     "watch": {
         "build": {
