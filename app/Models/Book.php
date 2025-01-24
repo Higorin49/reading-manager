@@ -27,6 +27,6 @@ class Book extends Model
         return $this->hasMany(Board::class);
     }
     public function bookimages(){
-        return $this->hasMany(BookImage::class);
+        return $this->hasMany(Bookimage::class);
     }
 }
