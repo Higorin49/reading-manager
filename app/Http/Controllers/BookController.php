@@ -51,11 +51,11 @@ class BookController extends Controller
         if ($param!="") {
             // $book->where('title', 'LIKE',$param)
             // ->get();
-            $datas=$book->with("bookimages")->where('title', 'LIKE',"%{$param}%")->orWhere('author','LIKE',"%{$param}%")->get();
+            $datas=$book->with("bookimages",'boards')->where('title', 'LIKE',"%{$param}%")->orWhere('author','LIKE',"%{$param}%")->get();
             // dd($data);
             // return Inertia::render("Book/Glibrary",["books" => $datas]);
         }else{
-            $datas = $book->with("bookimages")->get();
+            $datas = $book->with("bookimages","boards")->get();
         }
         return Inertia::render("Book/Glibrary",["books" => $datas]);
     }

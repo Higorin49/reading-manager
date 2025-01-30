@@ -1,25 +1,27 @@
 import React, { useState } from "react";
 import axios from "axios";
-function PostModal({ setPost, bookdata, refreshBoard,board }) {
-    const [body, setBody] = useState(""); // 投稿内容の状態
+
+function PostModal({ setPost, bookdata, refreshBoard, board }) {
+    const [body, setBody] = useState("");
+
     const closeModal = () => {
-        setPost(false); // モーダルを閉じる
+        setPost(false);
     };
+
     const handleSubmit = async () => {
-      try {
-          const response = await axios.post(`/board`, {
-              body:body,
-              board_id:board.id
-          });
-          refreshBoard(); 
-          setPost();
-
-
-          console.log("投稿成功:", response.data);
-      } catch (error) {
-          console.error("投稿エラー:", error);
-      }
+        try {
+            const response = await axios.post(`/board`, {
+                body: body,
+                board_id: board.id
+            });
+            refreshBoard();
+            setPost(false);
+            console.log("投稿成功:", response.data);
+        } catch (error) {
+            console.error("投稿エラー:", error);
+        }
     };
+
     return (
         <div
             id="overlay"
@@ -29,35 +31,32 @@ function PostModal({ setPost, bookdata, refreshBoard,board }) {
             <div
                 id="content"
                 onClick={(e) => e.stopPropagation()}
-                className="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full"
+                className="bg-white rounded-lg shadow-lg p-6 max-w-md w-full"
             >
-                <h2 className="font-bold mb-4">新しい投稿を作成</h2>
+                <h2 className="font-bold text-lg mb-4">新しい投稿を作成</h2>
                 <textarea
-                    className="w-full h-32 p-2 border rounded-md mb-4"
+                    className="w-full h-32 p-3 border rounded-md mb-4 focus:ring-2 focus:ring-blue-400"
                     placeholder="内容を入力してください"
                     value={body}
                     onChange={(e) => setBody(e.target.value)}
                 ></textarea>
-                <button
-                    onClick={handleSubmit}
-                    className="bg-blue-500 text-white px-4 py-2 rounded-md mr-4"
-                >
-                    投稿
-                </button>
-                <button
-                    onClick={closeModal}
-                    className="bg-gray-500 text-white px-4 py-2 rounded-md"
-                >
-                    閉じる
-                </button>
+                <div className="flex justify-end space-x-2">
+                    <button
+                        onClick={handleSubmit}
+                        className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition"
+                    >
+                        投稿
+                    </button>
+                    <button
+                        onClick={closeModal}
+                        className="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition"
+                    >
+                        閉じる
+                    </button>
+                </div>
             </div>
         </div>
     );
 }
+
 export default PostModal;
-
-
-
-
-
-

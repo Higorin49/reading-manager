@@ -1,29 +1,29 @@
-import React from "react";
+
+import React, { useState } from "react";
 import Authenticated from "@/Layouts/AuthenticatedLayout";
-import { useState,useEffect } from "react";
-import ContentCard from './ContentCard';
-import BookModalWindow from './BookModalWindow';
-
-
+import ContentGrid from "./ContentCard";
+import BookModalWindow from "./BookModalWindow";
 
 const Mylibrary = (props) => {
     const { books } = props;
     const [modalState, setModalState] = useState(null);
-    
-    
-    
-    
+
     return (
-        <Authenticated user=
-            {props.auth.user} header={
-               <h5>本棚</h5>}
-                 >
-            
-                { books.map((book) => (<ContentCard mybook={book} setModalState={setModalState} />
-                ))}
-                {modalState!==null ? <BookModalWindow setShow={setModalState} myBook={books.filter(item => item.id==modalState)[0]} /> : <></>}
+        <Authenticated 
+            user={props.auth.user} 
+            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">本棚</h2>}
+        >
+            <div className="p-4">
+                <ContentGrid books={books} setModalState={setModalState} />
+                {modalState !== null && (
+                    <BookModalWindow 
+                        setShow={setModalState} 
+                        myBook={books.find(item => item.id === modalState)}
+                    />
+                )}
+            </div>
         </Authenticated>
-    )
-    }
+    );
+};
 
 export default Mylibrary;

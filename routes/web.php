@@ -46,6 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/mylibrary', [BookController::class, 'showMylibrary'])->name('mylibrary');
     Route::get('/mymodal', [BookController::class, 'myModal'])->name('mymodal');
     Route::post('/addpage',[BookController::class, 'addPage'])->name('addpage');
+    Route::get('/board',[BoardController::class,'showAllBoards'])->name('showAllBoards');
     Route::get("/board/{id}",[BoardController::class,"showBoard"]);
     Route::post("/board", [BoardController::class, "sendPost"]);
     Route::get('/api/board/{id}/posts', [BoardController::class, 'getPosts']);
@@ -54,6 +55,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/posts/{post}/repost',[PostController::class,"getRepost"]);
     Route::post('/books/isbn',[BookController::class, 'storeisbn']);
     Route::get('/books/createisbn', [BookController::class, 'createisbn'])->name('createisbn');
+    Route::post('/post/like/{post_id}',[BoardController::class,'postlike']);
 });
 
 require __DIR__.'/auth.php';
